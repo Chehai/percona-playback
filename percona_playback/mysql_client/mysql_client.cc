@@ -80,8 +80,12 @@ void MySQLDBThread::execute_query(const std::string &query, QueryResult *r,
 	      "Error during query: %s, number of tries %u\n",
 	      mysql_error(&handle),
 	      i);
-      disconnect();
-      connect_and_init_session();
+        
+        if (i == max_err_num - 1 && mysql_errno(&handle) > 1999) {
+                fprintf(stderr, "Error during query: reconnect after last try\n");
+                disconnect();
+                connect_and_init_session();
+          }
     }
     else
     {

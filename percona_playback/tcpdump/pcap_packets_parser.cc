@@ -27,7 +27,7 @@
 #include <boost/foreach.hpp>
 #include <assert.h>
 
-#define SNAP_LEN            16500  // pcap's max capture size
+#define SNAP_LEN            65535  // pcap's max capture size
 
 extern percona_playback::DBClientPlugin *g_dbclient_plugin;
 extern percona_playback::DispatcherPlugin *g_dispatcher_plugin;
