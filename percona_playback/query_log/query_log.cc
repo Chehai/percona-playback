@@ -245,17 +245,13 @@ void QueryLogEntry::add_query_line(const std::string &s)
     set_timestamp_query= s;
   else
   {
-    //Append space insead of \r\n
-    std::string::const_iterator end = s.end() - 1;
-    if (s.length() >= 2 && *(s.end() - 2) == '\r')
-      --end;
+    std::string::const_iterator end = s.end();
     //Remove initial spaces for best query viewing in reports
     std::string::const_iterator begin;
     for (begin = s.begin(); begin != end; ++begin)
       if (*begin != ' ' && *begin != '\t')
         break;
     query.append(begin, end);
-    query.append(" ");
   }
 }
 
